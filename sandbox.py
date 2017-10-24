@@ -1,7 +1,7 @@
 from pynoaa import PyNOAA
 
 noaa = PyNOAA("KEQrNcMDIrZMyWtDslGKEkgETXbgIvjZ")
-print(noaa.datasets(limit=25))
+print(noaa.datasets(enddate = ["1954-05-20"]))
 
 # datasets_request = urllib.request.Request("https://www.ncdc.noaa.gov/cdo-web/api/v2/datasets", headers={"token" : "KEQrNcMDIrZMyWtDslGKEkgETXbgIvjZ"})
 # datasets = json.loads(urllib.request.urlopen(datasets_request).read())
