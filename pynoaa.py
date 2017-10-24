@@ -23,9 +23,9 @@ class PyNOAA:
         logging.info('PyNOAA(%s) initialized' % self._token)
 
     def _fetch_and_parse(self):
-        p_frame = inspect.getouterframes( inspect.currentframe() )[1]
-        path = inspect.getframeinfo(p_frame.frame).function
-        _, _, _, p_locals = inspect.getargvalues(p_frame.frame)
+        p_frame = inspect.currentframe().f_back
+        path = inspect.getframeinfo(p_frame).function
+        _, _, _, p_locals = inspect.getargvalues(p_frame)
         logging.info("%s(%s)" % (path, p_locals))
         values = p_locals.copy()
         values.update(p_locals.get("kwargs",{}))
