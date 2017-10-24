@@ -29,11 +29,11 @@ class PyNOAA:
         logging.info("%s(%s)" % (path, p_locals))
         values = p_locals.copy()
         values.update(p_locals.get("kwargs",{}))
+        values.pop("self", None)
+        values.pop("kwargs", None)
         logging.debug("values = %s" % values)
         query = []
         for var, value in values.items():
-            if var in ["self","kwargs"]:
-                continue
             if not value:
                 continue
             if var == "id":
