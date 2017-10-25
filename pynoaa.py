@@ -25,12 +25,9 @@ class PyNOAA:
     def _fetch_and_parse(self):
         p_frame = inspect.currentframe().f_back
         path = inspect.getframeinfo(p_frame).function
-        _, _, _, p_locals = inspect.getargvalues(p_frame)
-        logging.info("%s(%s)" % (path, p_locals))
-        values = p_locals.copy()
-        values.update(p_locals.get("kwargs",{}))
+        _, _, _, values = inspect.getargvalues(p_frame)
+        logging.info("%s(%s)" % (path, values))
         values.pop("self", None)
-        values.pop("kwargs", None)
         logging.debug("values = %s" % values)
         query = []
         for var, value in values.items():
@@ -59,7 +56,12 @@ class PyNOAA:
         datatypeid = None,
         locationid = None,
         stationid = None,
-        **kwargs
+        startdate = None,
+        enddate = None,
+        sortfield = None,
+        sortorder = None,
+        limit = None,
+        offset = None
     ):
         return self._fetch_and_parse()
 
@@ -68,6 +70,11 @@ class PyNOAA:
         datasetid = None,
         locationid = None,
         stationid = None,
-        **kwargs
+        startdate = None,
+        enddate = None,
+        sortfield = None,
+        sortorder = None,
+        limit = None,
+        offset = None
     ):
         return self._fetch_and_parse()
