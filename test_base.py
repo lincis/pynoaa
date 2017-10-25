@@ -1,5 +1,6 @@
 import pytest
 from pynoaa import PyNOAA
+from time import sleep
 
 noaa = PyNOAA("KEQrNcMDIrZMyWtDslGKEkgETXbgIvjZ")
 @pytest.mark.parametrize('startdate,locationid',(
@@ -11,6 +12,7 @@ def test_datasets(startdate, locationid):
     results = datasets["results"]
     assert datasets["metadata"]["resultset"]["limit"] == 1
     assert results[0]["id"] == "GHCND"
+    sleep(0.2)
 
 @pytest.mark.parametrize('fun,id',(
     ['datasets','NEXRAD2',],
@@ -23,3 +25,4 @@ def test_datasets(startdate, locationid):
 def test_id(fun, id):
     results = getattr(noaa, fun)(id=id)
     assert results["id"] == id
+    sleep(0.2)
