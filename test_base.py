@@ -11,3 +11,15 @@ def test_datasets(startdate, locationid):
     results = datasets["results"]
     assert datasets["metadata"]["resultset"]["limit"] == 1
     assert results[0]["id"] == "GHCND"
+
+@pytest.mark.parametrize('fun,id',(
+    ['datasets','NEXRAD2',],
+    ['datacategories','ANNPRCP',],
+    ['datatypes','ANN-DUTR-NORMAL',],
+    ['locationcategories','CNTRY',],
+    ['locations','CITY:AG000007',],
+    ['stations','COOP:010148',],
+))
+def test_id(fun, id):
+    results = getattr(noaa, fun)(id=id)
+    assert results["id"] == id

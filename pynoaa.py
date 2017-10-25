@@ -28,19 +28,17 @@ class PyNOAA:
         _, _, _, values = inspect.getargvalues(p_frame)
         logging.info("%s(%s)" % (path, values))
         values.pop("self", None)
-        logging.debug("values = %s" % values)
         query = []
         for var, value in values.items():
             if not value:
                 continue
             if var == "id":
-                path = urljoin(path, value)
+                path += "/" + value
                 continue
             if not (isinstance(value, list) or isinstance(value, set)):
                 if not isinstance(value, str):
                     value = str(value)
                 value = [value,]
-            logging.debug("Working on %s = %s" % (var, value))
             for occ in value:
                 query.append(var + "=" + occ)
         if len(query):
@@ -72,6 +70,78 @@ class PyNOAA:
         stationid = None,
         startdate = None,
         enddate = None,
+        sortfield = None,
+        sortorder = None,
+        limit = None,
+        offset = None
+    ):
+        return self._fetch_and_parse()
+
+    def datatypes(self,
+        id = None,
+        datasetid = None,
+        locationid = None,
+        stationid = None,
+        datacategoryid = None,
+        startdate = None,
+        enddate = None,
+        sortfield = None,
+        sortorder = None,
+        limit = None,
+        offset = None
+    ):
+        return self._fetch_and_parse()
+
+    def locationcategories(self,
+        id = None,
+        datasetid = None,
+        startdate = None,
+        enddate = None,
+        sortfield = None,
+        sortorder = None,
+        limit = None,
+        offset = None
+    ):
+        return self._fetch_and_parse()
+
+    def locations(self,
+        id = None,
+        datasetid = None,
+        locationcategoryid = None,
+        datacategoryid = None,
+        startdate = None,
+        enddate = None,
+        sortfield = None,
+        sortorder = None,
+        limit = None,
+        offset = None
+    ):
+        return self._fetch_and_parse()
+
+    def stations(self,
+        id = None,
+        datasetid = None,
+        locationid = None,
+        datacategoryid = None,
+        datatypeid = None,
+        extent = None,
+        startdate = None,
+        enddate = None,
+        sortfield = None,
+        sortorder = None,
+        limit = None,
+        offset = None
+    ):
+        return self._fetch_and_parse()
+
+    def data(self,
+        datasetid = None,
+        datatypeid = None,
+        locationid = None,
+        stationid = None,
+        startdate = None,
+        enddate = None,
+        units = None,
         sortfield = None,
         sortorder = None,
         limit = None,
