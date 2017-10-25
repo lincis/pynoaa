@@ -45,7 +45,7 @@ class PyNOAA:
             path += "?" + "&".join(query)
         logging.debug("Create request to: %s" % urljoin(self._api_base, path))
         request = Request(urljoin(self._api_base, path), headers={"token": self._token})
-        raw_data = urlopen(request).read()
+        raw_data = urlopen(request).read().decode('utf-8')
         logging.debug("Got response: %s" % raw_data)
         return json.loads(raw_data)
 
