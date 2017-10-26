@@ -3,7 +3,9 @@ python:
   - "2.7"
   - "3.6"
 # command to run tests
-script:
+before_script:
+  - pip install -r test_requirements.txt --use-mirrors
+-script:
   - pytest --doctest-modules --pep8 coveralls -v --cov coveralls --cov-report term-missing
 after_success:
   - coveralls
