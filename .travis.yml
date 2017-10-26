@@ -4,7 +4,9 @@ python:
   - "3.6"
 # command to run tests
 script:
-  - pytest # or py.test for Python versions 3.5 and below
+  - pytest --doctest-modules --pep8 coveralls -v --cov coveralls --cov-report term-missing
+after_success:
+  - coveralls
 notifications:
   email:
     recipients:
