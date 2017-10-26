@@ -9,6 +9,7 @@ before_script:
 script:
   - pytest .
 after_success:
+  - coverage run --source=pynoaa setup.py test
   - coveralls
 notifications:
   email:
