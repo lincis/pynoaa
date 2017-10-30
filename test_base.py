@@ -1,8 +1,9 @@
 import pytest
 from pynoaa import PyNOAA
 from time import sleep
+import os
 
-token = os.enviton.get('password', None)
+token = os.environ.get('TOKEN', None)
 
 noaa = PyNOAA(token)
 @pytest.mark.parametrize('startdate,locationid',(
