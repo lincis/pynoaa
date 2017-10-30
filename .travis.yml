@@ -1,17 +1,19 @@
 language: python
 python:
-  - "2.7"
-  - "3.6"
-# command to run tests
+- '2.7'
+- '3.6'
 before_script:
-  - pip install pytest pytest-cov
-  - pip install coveralls
+- pip install pytest pytest-cov
+- pip install coveralls
 script:
-  - pytest .
+- pytest .
 after_success:
-  - coverage run --source=pynoaa setup.py test
-  - coveralls
+- coverage run --source=pynoaa setup.py test
+- coveralls
 notifications:
   email:
     recipients:
-      - linards.kalvans@gmail.com
+    - linards.kalvans@gmail.com
+deploy:
+  password:
+    secure: JDKqD1FeIoqEj8qmMR7sat/FRuBRWJ4kz4mNwbYrMEiCM/hmKcPpU1yl/UjjzL+1ib1YvixKASn/vyqbsiy16g7EjhJUCsrg8Yhtszoh4WuWjObXN5ZjQwl3bRQrVOZ1Np0O+8d2tGvbma/ptp+P72dqMPdEsRaxMZJBaALjmkDD9fiVEGznCiwHB5JfMFjh9sg1a7wfL6Y+UaoBoeXxs8RHpm+QVeCH/8Oa6sURUz6om9U7OOlsIwn0Jx64bTKzzgZYoebWcLfoAA5iuzdZ0qhu2qkSEI7GEtXXPUtsndK2OCiIE0jXRvKsumVD/2I4QqOPWyq9Uwq9FETd8t/NTe45lqV9JHDwSQieRCTbbKry2b/KLwhUUN7fGXVb3waZcDkueeBwQCUOpl5p8a3m/UE05WkdMQmfdMW3ObA2phlDX5WdLuJ+qjvMg5D7N6ttlBjT0VyI1W+9n8A1V0br/eKqulESVIbfNQznMz11WZ67jH5Jby3wCozVfxi266NXMCxUt2vXSlq00Re2QC72sLuyCWUdN4jRv7bw8MtZhzxIJye4sXdWk49/7oJAmAAjbEkTwdiwoov1LRThikh8gRXMXIEJ9cNUNlO+qmwBeSeMpTgUcFDPdR1zc5gdOajrHgkWyUBkc7CFyLL5xgYlH53W0DYP8JSvoLWe/++g1/U=

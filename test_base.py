@@ -2,7 +2,9 @@ import pytest
 from pynoaa import PyNOAA
 from time import sleep
 
-noaa = PyNOAA("KEQrNcMDIrZMyWtDslGKEkgETXbgIvjZ")
+token = os.enviton.get('password', None)
+
+noaa = PyNOAA(token)
 @pytest.mark.parametrize('startdate,locationid',(
     ['1994-05-20',None],
     [None,['FIPS:36','FIPS:37']],
