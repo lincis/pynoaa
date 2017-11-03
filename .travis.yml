@@ -6,9 +6,8 @@ before_script:
 - pip install pytest pytest-cov
 - pip install coveralls
 script:
-- pytest .
+- coverage run --source=pynoaa -m pytest .
 after_success:
-- coverage run --source=pynoaa pytest .
 - coveralls
 notifications:
   email:
