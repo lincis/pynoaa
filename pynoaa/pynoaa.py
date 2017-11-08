@@ -8,10 +8,6 @@ except ImportError:
 import json
 import inspect
 import logging
-try:
-    from exceptions import Exception
-except:
-    pass
 
 logging.basicConfig(
     filename = 'pynoaa.log',
