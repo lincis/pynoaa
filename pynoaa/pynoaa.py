@@ -3,7 +3,7 @@ try:
     from urllib.request import urlopen, Request
 except ImportError:
     from urlparse import urljoin
-    from urllib2 import urlopen, Request, HTTPError
+    from urllib2 import urlopen, Request
 
 import json
 import inspect
