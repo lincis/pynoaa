@@ -1,7 +1,6 @@
 try:
     from urllib.parse import urljoin
     from urllib.request import urlopen, Request
-    from urllib.error import HTTPError
 except ImportError:
     from urlparse import urljoin
     from urllib2 import urlopen, Request, HTTPError
@@ -9,6 +8,10 @@ except ImportError:
 import json
 import inspect
 import logging
+try:
+    from exceptions import Exception
+except:
+    pass
 
 logging.basicConfig(
     filename = 'pynoaa.log',
@@ -16,10 +19,15 @@ logging.basicConfig(
     format='%(asctime)s %(message)s',
 )
 
+class InvalidURL(Exception):
+    pass
+
 class PyNOAA:
     def __init__(self, token, api_base = "https://www.ncdc.noaa.gov/cdo-web/api/v2/"):
         self._token = token
         self._api_base = api_base
+        if not self._api_base.startswith('http'):
+            raise InvalidURL('Invalid API URL provided: %s' % self._api_base)
         logging.info('PyNOAA(%s) initialized' % self._token)
 
     def _fetch_and_parse(self):
@@ -32,7 +40,7 @@ class PyNOAA:
         for var, value in values.items():
             if not value:
                 continue
-            if var == "id":
+            if var == "_id":
                 path += "/" + value
                 continue
             if not (isinstance(value, list) or isinstance(value, set)):
@@ -50,7 +58,7 @@ class PyNOAA:
         return json.loads(raw_data)
 
     def datasets(self,
-        id = None,
+        _id = None,
         datatypeid = None,
         locationid = None,
         stationid = None,
@@ -64,7 +72,7 @@ class PyNOAA:
         return self._fetch_and_parse()
 
     def datacategories(self,
-        id = None,
+        _id = None,
         datasetid = None,
         locationid = None,
         stationid = None,
@@ -78,7 +86,7 @@ class PyNOAA:
         return self._fetch_and_parse()
 
     def datatypes(self,
-        id = None,
+        _id = None,
         datasetid = None,
         locationid = None,
         stationid = None,
@@ -93,7 +101,7 @@ class PyNOAA:
         return self._fetch_and_parse()
 
     def locationcategories(self,
-        id = None,
+        _id = None,
         datasetid = None,
         startdate = None,
         enddate = None,
@@ -105,7 +113,7 @@ class PyNOAA:
         return self._fetch_and_parse()
 
     def locations(self,
-        id = None,
+        _id = None,
         datasetid = None,
         locationcategoryid = None,
         datacategoryid = None,
@@ -119,7 +127,7 @@ class PyNOAA:
         return self._fetch_and_parse()
 
     def stations(self,
-        id = None,
+        _id = None,
         datasetid = None,
         locationid = None,
         datacategoryid = None,

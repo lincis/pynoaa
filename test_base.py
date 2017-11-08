@@ -26,6 +26,6 @@ def test_datasets(startdate, locationid):
     ['stations','COOP:010148',],
 ))
 def test_id(fun, id):
-    results = getattr(noaa, fun)(id=id)
+    results = getattr(noaa, fun)(_id=id)
     assert results["id"] == id
     sleep(0.3)
