@@ -22,7 +22,7 @@ Python SDK `NOAA climate API <https://www.ncdc.noaa.gov/cdo-web/webservices/v2>`
    :target: https://pynoaa.readthedocs.io/?badge=latest
    :alt: Documentation Status
 
-.. |linux| image:: https://img.shields.io/travis/lincis/pynoaa/master.svg?label=Linux%20build
+.. |linux| image:: https://travis-ci.org/lincis/pynoaa.svg?branch=master
    :target: https://travis-ci.org/lincis/pynoaa
    :alt: Travis CI build status (Linux)
 
@@ -30,7 +30,7 @@ Python SDK `NOAA climate API <https://www.ncdc.noaa.gov/cdo-web/webservices/v2>`
    :target: https://coveralls.io/github/lincis/pynoaa?branch=master
    :alt: Code coverage
 
-.. |version| image:: https://img.shields.io/pypi/v/pynoaa.svg
+.. |version| image:: https://badge.fury.io/py/pynoaa.svg
    :target: https://pypi.python.org/pypi/pynoaa/
    :alt: Latest PyPI version
 
